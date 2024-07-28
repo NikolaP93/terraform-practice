@@ -26,5 +26,5 @@ resource "aws_lambda_permission" "allow_api_gateway" {
   function_name = module.lambda.function_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "${module.api_gateway.execution_arn}/*/*"
+  source_arn = module.api_gateway.execution_arn
 }
