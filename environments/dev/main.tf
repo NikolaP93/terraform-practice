@@ -2,6 +2,16 @@ provider "aws" {
   region = "eu-north-1"
 }
 
+terraform {
+  backend "s3" {
+    bucket = "terraform-state-bucket-practice1"
+    key = "dev/terraform/state"
+    region = "eu-north-1"
+    dynamodb_table = "terraform-state-lock"
+    encrypt        = true
+  }
+}
+
 module "iam" {
   source = "../../modules/iam"
   role_name = "lambda_exec_role"
